@@ -24,42 +24,35 @@ import org.eclipse.jetty.websocket.api.WebSocketListener;
 /**
  * Example EchoSocket using Listener.
  */
-public class ListenerEchoSocket implements WebSocketListener
-{
-    private Session outbound;
+public class ListenerEchoSocket implements WebSocketListener {
+    private Session mSession;
 
     @Override
-    public void onWebSocketBinary(byte[] payload, int offset, int len)
-    {
+    public void onWebSocketBinary(byte[] payload, int offset, int len) {
         /* only interested in text messages */
     }
 
     @Override
-    public void onWebSocketClose(int statusCode, String reason)
-    {
-        this.outbound = null;
+    public void onWebSocketClose(int statusCode, String reason) {
+        mSession = null;
     }
 
     @Override
-    public void onWebSocketConnect(Session session)
-    {
-        this.outbound = session;
+    public void onWebSocketConnect(Session session) {
+        mSession = session;
     }
 
     @Override
-    public void onWebSocketError(Throwable cause)
-    {
+    public void onWebSocketError(Throwable cause) {
         cause.printStackTrace(System.err);
     }
 
     @Override
-    public void onWebSocketText(String message)
-    {
-        if ((outbound != null) && (outbound.isOpen()))
-        {
+    public void onWebSocketText(String message) {
+        if (mSession != null && mSession.isOpen()) {
             System.out.printf("Echoing back message [%s]%n",message);
             // echo the message back
-            outbound.getRemote().sendString(message,null);
+            mSession.getRemote().sendString(message,null);
         }
     }
 }
