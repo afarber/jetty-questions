@@ -8,9 +8,9 @@ The files are public domain - unless there is a different note (by their respect
 Screenshots
 ==========
 
-[JettyMavenHelloWorld](https://github.com/afarber/android-newbie/tree/master/JettyMavenHelloWorld):
+[JettyMavenHelloWorld](https://github.com/afarber/jetty-newbie/tree/master/JettyMavenHelloWorld):
 
-![screenshot](https://raw.github.com/afarber/android-newbie/master/JettyMavenHelloWorld/screenshot.png)
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWorld/screenshot.png)
 
 ![StackOverflow](http://stackoverflow.com/users/flair/165071.png)
 
