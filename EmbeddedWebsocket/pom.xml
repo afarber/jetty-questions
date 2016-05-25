@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.afarber</groupId>
+    <artifactId>embedded-websocket</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Embedded Websocket</name>
+
+    <properties>
+        <!-- Adapt this to a version found on
+           http://central.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/
+        -->
+        <jettyVersion>9.3.9.v20160517</jettyVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jettyVersion}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>de.afarber.EmbeddedWebsocket</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jettyVersion}</version>
+                <configuration>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopKey>foo</stopKey>
+                    <stopPort>8888</stopPort>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
