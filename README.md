@@ -12,9 +12,16 @@ Screenshots
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWorld/screenshot.png)
 
+
 [EmbeddedWebsocket](https://github.com/afarber/jetty-newbie/tree/master/EmbeddedWebsocket):
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/EmbeddedWebsocket/screenshot.png)
+
+
+[EmbeddedWebsocketListener](https://github.com/afarber/jetty-newbie/tree/master/EmbeddedWebsocketListener) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt:
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/EmbeddedWebsocketListener/screenshot.png)
+
 
 ![StackOverflow](http://stackoverflow.com/users/flair/165071.png)
 
