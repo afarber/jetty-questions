@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<SCRIPT>
+        var ws = new WebSocket("ws://127.0.0.1:8080/");
+         
+        ws.onopen = function() {
+            appendLog('onopen');
+        };
+         
+        ws.onmessage = function(e) {
+            appendLog('onmessage: ' + e.data);
+        };
+         
+        ws.onclose = function() {
+            appendLog('onclose');
+        };
+         
+        ws.onerror = function(e) {
+            console.log('onerror: ' + e);
+        };
+         
+        function appendLog(logText) {
+            var log = document.getElementById('log');
+            log.value = log.value + logText + "\n";
+        }
+         
+        function sendToServer(msg) {
+            ws.send(msg);
+        }
+</SCRIPT>
+</HEAD>
+<BODY>
+    <H1>Embedded Websocket</H1>
+    <BUTTON ONCLICK="sendToServer('START')">START</BUTTON>
+    <BUTTON ONCLICK="sendToServer('STOP')">STOP!</BUTTON><BR/><BR/>
+    <TEXTAREA ID="log" ROWS="10" COLS="90"></TEXTAREA>
+</BODY>
+</HTML>

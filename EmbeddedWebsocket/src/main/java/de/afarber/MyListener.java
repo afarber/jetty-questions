@@ -52,9 +52,9 @@ public class MyListener implements WebSocketListener {
     public void onWebSocketText(String message) {
         System.out.println("onWebSocketText: " + message);
         if (mSession != null && mSession.isOpen()) {
-            System.out.printf("Echoing back message [%s]%n",message);
+            System.out.printf("Echoing back message [%s]%n", message);
             // echo the message back
-            mSession.getRemote().sendString(message,null);
+            mSession.getRemote().sendString("ECHO: " + message, null);
         }
     }
 }

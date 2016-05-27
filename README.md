@@ -12,6 +12,10 @@ Screenshots
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWorld/screenshot.png)
 
+[EmbeddedWebsocket](https://github.com/afarber/jetty-newbie/tree/master/EmbeddedWebsocket):
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/EmbeddedWebsocket/screenshot.png)
+
 ![StackOverflow](http://stackoverflow.com/users/flair/165071.png)
 
 [My Jetty-related questions at StackOverflow](http://stackoverflow.com/search?q=user:165071+[jetty])
