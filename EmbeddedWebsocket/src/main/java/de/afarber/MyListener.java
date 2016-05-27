@@ -24,7 +24,7 @@ import org.eclipse.jetty.websocket.api.WebSocketListener;
 /**
  * Example EchoSocket using Listener.
  */
-public class ListenerEchoSocket implements WebSocketListener {
+public class MyListener implements WebSocketListener {
     private Session mSession;
 
     @Override
@@ -39,6 +39,7 @@ public class ListenerEchoSocket implements WebSocketListener {
 
     @Override
     public void onWebSocketConnect(Session session) {
+        System.out.println("onWebSocketConnect: " + session);
         mSession = session;
     }
 
@@ -49,6 +50,7 @@ public class ListenerEchoSocket implements WebSocketListener {
 
     @Override
     public void onWebSocketText(String message) {
+        System.out.println("onWebSocketText: " + message);
         if (mSession != null && mSession.isOpen()) {
             System.out.printf("Echoing back message [%s]%n",message);
             // echo the message back
