@@ -18,4 +18,5 @@ CPATHS=(
         $REPO/org/eclipse/jetty/websocket/websocket-servlet/9.3.9.v20160517/websocket-servlet-9.3.9.v20160517.jar 
 ) 
 
-/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin/java -classpath "$(IFS=:; echo "${CPATHS[*]}")" de.afarber.MyServlet
+/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin/java \
+        -classpath "$(IFS=:; echo "${CPATHS[*]}")" de.afarber.MyServlet
