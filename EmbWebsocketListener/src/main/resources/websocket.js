@@ -21,7 +21,7 @@ function getKeyCode(ev) {
 
 var wstool = {
     connect : function() {
-        var location = document.location.toString().replace('http://', 'ws://') + "echo";
+        var location = 'ws://127.0.0.1:8080/echo';
 
         wstool.info("Document URI: " + document.location);
         wstool.info("WS URI: " + location);

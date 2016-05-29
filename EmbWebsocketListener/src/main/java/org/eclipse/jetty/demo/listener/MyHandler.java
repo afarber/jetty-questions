@@ -1,5 +1,6 @@
 package org.eclipse.jetty.demo.listener;
 
+import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 
@@ -12,5 +13,12 @@ public class MyHandler extends WebSocketHandler {
         //factory.getPolicy().setMaxTextMessageSize(64 * 1024);   // 64 KByte
         
         factory.register(MyListener.class);
+    }
+    
+    public static void main(String[] args) throws Exception {
+        Server server = new Server(8080);
+        server.setHandler(new MyHandler());
+        server.start();
+        server.join();
     }
 }
