@@ -1,4 +1,4 @@
-package org.eclipse.jetty.demo.listener;
+package de.afarber;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;

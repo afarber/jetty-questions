@@ -13,14 +13,14 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWorld/screenshot.png)
 
 
-[EmbeddedWebsocket](https://github.com/afarber/jetty-newbie/tree/master/EmbeddedWebsocket):
+[WebsocketServlet](https://github.com/afarber/jetty-newbie/tree/master/WebsocketServlet):
 
-![screenshot](https://raw.github.com/afarber/jetty-newbie/master/EmbeddedWebsocket/screenshot.png)
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketServlet/screenshot.png)
 
 
-[EmbeddedWebsocketListener](https://github.com/afarber/jetty-newbie/tree/master/EmbWebsocketListener) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt:
+[WebsocketHandler](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt:
 
-![screenshot](https://raw.github.com/afarber/jetty-newbie/master/EmbWebsocketListener/screenshot.png)
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketHandler/screenshot.png)
 
 
 ![StackOverflow](http://stackoverflow.com/users/flair/165071.png)

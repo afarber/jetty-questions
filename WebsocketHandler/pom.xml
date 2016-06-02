@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.eclipse.jetty.demo</groupId>
-  <artifactId>EmbWebsocketListener</artifactId>
+  <artifactId>websocket-handler</artifactId>
   <version>9.3.7.v20160115</version>
   <packaging>jar</packaging>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jetty.version>9.3.7.v20160115</jetty.version>
+    <jetty.version>9.3.9.v20160517</jetty.version>
   </properties>
   
   <dependencies>
@@ -26,6 +26,11 @@
     <dependency>
       <groupId>org.eclipse.jetty.websocket</groupId>
       <artifactId>websocket-servlet</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-util-ajax</artifactId>
       <version>${jetty.version}</version>
     </dependency>
   </dependencies>
@@ -50,4 +55,5 @@
       -->
     </plugins>
   </build>
+    <name>WebsocketHandler</name>
 </project>

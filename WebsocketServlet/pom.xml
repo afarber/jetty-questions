@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.afarber</groupId>
-    <artifactId>embedded-websocket</artifactId>
+    <artifactId>websocket-servlet</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Embedded Websocket</name>
+    <name>WebsocketServlet</name>
   
     <properties>
         <jetty.version>9.3.9.v20160517</jetty.version>
@@ -44,6 +44,11 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${pgsql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util-ajax</artifactId>
+            <version>9.3.9.v20160517</version>
         </dependency>
     </dependencies>
 </project>
