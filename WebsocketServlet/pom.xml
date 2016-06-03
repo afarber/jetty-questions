@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.afarber</groupId>
+    <groupId>de.afarber.websocket.servlet</groupId>
     <artifactId>websocket-servlet</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -48,7 +48,7 @@
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-util-ajax</artifactId>
-            <version>9.3.9.v20160517</version>
+            <version>${jetty.version}</version>
         </dependency>
     </dependencies>
 </project>

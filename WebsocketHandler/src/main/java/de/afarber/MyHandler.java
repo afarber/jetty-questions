@@ -1,5 +1,8 @@
 package de.afarber;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Properties;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
@@ -16,6 +19,13 @@ public class MyHandler extends WebSocketHandler {
     }
     
     public static void main(String[] args) throws Exception {
+        final String url = "jdbc:postgresql://localhost/";
+        Properties props = new Properties();
+        props.setProperty("database", System.getenv("PGNAME"));
+        props.setProperty("user", System.getenv("PGUSER"));
+        props.setProperty("password", System.getenv("PGPASS"));
+        Connection conn = DriverManager.getConnection(url, props);
+
         Server server = new Server(8080);
         server.setHandler(new MyHandler());
         server.start();
