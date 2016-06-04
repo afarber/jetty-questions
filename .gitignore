@@ -16,3 +16,6 @@ hs_err_pid*
 .settings/
 target/
 
+# hide database connection credentials
+database.properties
+

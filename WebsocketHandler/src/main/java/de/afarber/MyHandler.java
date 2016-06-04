@@ -1,5 +1,7 @@
 package de.afarber;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
@@ -18,12 +20,20 @@ public class MyHandler extends WebSocketHandler {
         factory.register(MyListener.class);
     }
     
+    /*
+     * Create the file src/main/resources/database.properties containing:
+     * database: test
+     * user: test
+     * password: test
+    */
+    
     public static void main(String[] args) throws Exception {
-        final String url = "jdbc:postgresql://localhost/";
+        final String url = "jdbc:postgresql://127.0.0.1/";
         Properties props = new Properties();
-        props.setProperty("database", System.getenv("PGNAME"));
-        props.setProperty("user", System.getenv("PGUSER"));
-        props.setProperty("password", System.getenv("PGPASS"));
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        try (InputStream is = loader.getResourceAsStream("database.properties")) {
+            props.load(is);
+        }
         Connection conn = DriverManager.getConnection(url, props);
 
         Server server = new Server(8080);
