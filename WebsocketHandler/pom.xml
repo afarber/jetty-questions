@@ -1,10 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <name>WebsocketHandler</name>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>de.afarber.websocket.handler</groupId>
+  <groupId>de.afarber</groupId>
   <artifactId>websocket-handler</artifactId>
-  <version>9.3.7.v20160115</version>
+  <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <properties>
@@ -52,14 +53,6 @@
           <target>1.8</target>
         </configuration>
       </plugin>
-      <!--
-      <plugin>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-maven-plugin</artifactId>
-          <version>${jetty.version}</version>
-      </plugin>
-      -->
     </plugins>
   </build>
-    <name>WebsocketHandler</name>
 </project>

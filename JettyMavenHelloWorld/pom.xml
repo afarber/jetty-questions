@@ -4,15 +4,12 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.example</groupId>
-    <artifactId>hello-world</artifactId>
+    <artifactId>jetty-hello-world</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Jetty HelloWorld</name>
+    <name>Jetty Hello World</name>
 
     <properties>
-        <!-- Adapt this to a version found on
-           http://central.maven.org/maven2/org/eclipse/jetty/jetty-maven-plugin/
-        -->
         <jettyVersion>9.3.9.v20160517</jettyVersion>
     </properties>
 
