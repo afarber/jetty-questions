@@ -1,10 +1,5 @@
 package de.afarber;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.util.Properties;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
@@ -20,22 +15,7 @@ public class MyHandler extends WebSocketHandler {
         factory.register(MyListener.class);
     }
     
-    /*
-     * Create the file src/main/resources/database.properties containing:
-     * database: test
-     * user: test
-     * password: test
-    */
-    
     public static void main(String[] args) throws Exception {
-        final String url = "jdbc:postgresql://127.0.0.1/";
-        Properties props = new Properties();
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        try (InputStream is = loader.getResourceAsStream("database.properties")) {
-            props.load(is);
-        }
-        Connection conn = DriverManager.getConnection(url, props);
-
         Server server = new Server(8080);
         server.setHandler(new MyHandler());
         server.start();
