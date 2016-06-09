@@ -8,6 +8,11 @@ The files are public domain - unless there is a different note (by their respect
 Screenshots
 ==========
 
+[Echo](https://github.com/afarber/jetty-newbie/tree/master/Echo) based on [Jetty WebSocket Client API example](https://www.eclipse.org/jetty/documentation/current/jetty-websocket-client-api.html):
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/Echo/screenshot.png)
+
+
 [JettyMavenHelloWorld](https://github.com/afarber/jetty-newbie/tree/master/JettyMavenHelloWorld):
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWorld/screenshot.png)
