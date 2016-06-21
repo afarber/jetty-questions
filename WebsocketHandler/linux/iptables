@@ -1,0 +1,21 @@
+# /etc/sysconfig/iptables
+
+*filter
+:INPUT DROP
+:OUTPUT ACCEPT
+:FORWARD ACCEPT
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m multiport --dports 25,80,443,8080 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW --dport 22 --tcp-flags FIN,SYN,RST,ACK SYN -m limit --limit 2/min --limit-burst 1 -j ACCEPT
+COMMIT
+
+*nat
+:INPUT ACCEPT
+:OUTPUT ACCEPT
+:PREROUTING ACCEPT
+:POSTROUTING ACCEPT
+-A PREROUTING -p tcp --dst 123.123.123.123 --dport 80 -j DNAT --to-destination 123.123.123.123:8080
+COMMIT
+
