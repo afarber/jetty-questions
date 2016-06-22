@@ -28,6 +28,11 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketHandler/screenshot.png)
 
 
+[WssEmbedded](https://github.com/afarber/jetty-newbie/tree/master/WssEmbedded) listens on ws://127.0.0.1:8080 and wss://127.0.0.1:8443:
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WssEmbedded/screenshot.png)
+
+
 ![StackOverflow](http://stackoverflow.com/users/flair/165071.png)
 
 [My Jetty-related questions at StackOverflow](http://stackoverflow.com/search?q=user:165071+[jetty])
