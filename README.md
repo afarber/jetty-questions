@@ -23,7 +23,7 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketServlet/screenshot.png)
 
 
-[WebsocketHandler](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt:
+[WebsocketHandler](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt and includes [Linux config files](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler/linux) for systemd service and port forwarding 80 -> 8080:
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketHandler/screenshot.png)
 
