@@ -21,30 +21,15 @@ public class MyHandler extends WebSocketHandler {
     
    public static void main(String[] args) throws Exception {
        
-       // keytool  -genkey -alias key1 -keyalg RSA -keypass password1 -keystore keystore.jks
-       // java -cp "jetty-util\9.3.9.v20160517\*" org.eclipse.jetty.util.security.Password password1
+        Server server = new Server();
+        server.setHandler(new MyHandler());
+        
+       // keytool -v -genkeypair -alias key1 -keyalg RSA -keysize 2048 -validity 3650 -keypass changeit -keystore keystore.jks -storepass changeit
+       // java -cp "jetty-util\9.3.9.v20160517\*" org.eclipse.jetty.util.security.Password changeit
        
         SslContextFactory sslContextFactory = new SslContextFactory();
         sslContextFactory.setKeyStorePath("keystore.jks");
-        sslContextFactory.setKeyStorePassword("OBF:1l1a1s3g1yf41xtv20731xtn1yf21s3m1kxs"); // password1
-        
-        /*
-        sslContextFactory.setKeyManagerPassword("OBF:1l1a1s3g1yf41xtv20731xtn1yf21s3m1kxs");
-        sslContextFactory.setTrustStorePath("keystore.jks");
-        sslContextFactory.setTrustStorePassword("OBF:1l1a1s3g1yf41xtv20731xtn1yf21s3m1kxs");
-        sslContextFactory.setExcludeCipherSuites(
-                "SSL_RSA_WITH_DES_CBC_SHA",
-                "SSL_DHE_RSA_WITH_DES_CBC_SHA", 
-                "SSL_DHE_DSS_WITH_DES_CBC_SHA",
-                "SSL_RSA_EXPORT_WITH_RC4_40_MD5",
-                "SSL_RSA_EXPORT_WITH_DES40_CBC_SHA",
-                "SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA",
-                "SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA"
-        );
-        */
-        
-        Server server = new Server();
-        server.setHandler(new MyHandler());
+        sslContextFactory.setKeyStorePassword("OBF:1vn21ugu1saj1v9i1v941sar1ugw1vo0"); // changeit
         
         ServerConnector wsConnector = new ServerConnector(server);
         wsConnector.setHost(HOST);
