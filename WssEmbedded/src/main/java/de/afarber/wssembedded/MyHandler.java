@@ -25,7 +25,7 @@ public class MyHandler extends WebSocketHandler {
         server.setHandler(new MyHandler());
         
        // keytool -v -genkeypair -alias key1 -keyalg RSA -keysize 2048 -validity 3650 -keypass changeit -keystore keystore.jks -storepass changeit
-       // java -cp "jetty-util\9.3.9.v20160517\*" org.eclipse.jetty.util.security.Password changeit
+       // java -cp "jetty-util\9.3.10.v20160621\*" org.eclipse.jetty.util.security.Password changeit
        
         SslContextFactory sslContextFactory = new SslContextFactory();
         sslContextFactory.setKeyStorePath("keystore.jks");
