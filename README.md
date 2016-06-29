@@ -18,6 +18,11 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWorld/screenshot.png)
 
 
+[JettyMavenHelloWarApp](https://github.com/afarber/jetty-newbie/tree/master/JettyMavenHelloWarApp):
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWarApp/screenshot.png)
+
+
 [WebsocketServlet](https://github.com/afarber/jetty-newbie/tree/master/WebsocketServlet):
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketServlet/screenshot.png)
