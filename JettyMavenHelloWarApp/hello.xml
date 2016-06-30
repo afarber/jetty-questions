@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+    <Set name="contextPath">/hello</Set>
+    <Set name="contextPath">/</Set>
+    <Set name="virtualHosts">
+            <Array type="java.lang.String">
+                    <Item>slova.de</Item>
+                    <Item>www.slova.de</Item>
+                    <Item>127.0.0.1</Item>
+            </Array>
+    </Set>
+    <Set name="war"><SystemProperty name="jetty.base"/>/webapps/hello-world-0.1-SNAPSHOT.war</Set>
+</Configure>
+
