@@ -23,14 +23,19 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWarApp/screenshot.png)
 
 
+[WebsocketHandler](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt and includes [Linux config files](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler/linux) for systemd service and port forwarding 80 -> 8080:
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketHandler/screenshot.png)
+
+
 [WebsocketServlet](https://github.com/afarber/jetty-newbie/tree/master/WebsocketServlet):
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketServlet/screenshot.png)
 
 
-[WebsocketHandler](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt and includes [Linux config files](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler/linux) for systemd service and port forwarding 80 -> 8080:
+[WebSocketWarApp](https://github.com/afarber/jetty-newbie/tree/master/WebSocketWarApp):
 
-![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketHandler/screenshot.png)
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebSocketWarApp/screenshot.png)
 
 
 [WssEmbedded](https://github.com/afarber/jetty-newbie/tree/master/WssEmbedded) listens on ws://127.0.0.1:8080 and wss://127.0.0.1:8443:
