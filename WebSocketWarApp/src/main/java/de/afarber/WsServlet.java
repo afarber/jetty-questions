@@ -7,7 +7,7 @@ public class WsServlet extends WebSocketServlet
 {
     @Override
     public void configure(WebSocketServletFactory factory) {
-        factory.register(MyListener.class);
+        factory.register(EchoListener.class);
     }
 }
 

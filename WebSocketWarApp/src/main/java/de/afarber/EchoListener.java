@@ -1,37 +1,40 @@
 package de.afarber;
 
+import org.eclipse.jetty.util.log.Log;
+import org.eclipse.jetty.util.log.Logger;
 import org.eclipse.jetty.websocket.api.Session;
 import org.eclipse.jetty.websocket.api.WebSocketListener;
 
-public class MyListener implements WebSocketListener {
+public class EchoListener implements WebSocketListener {
+    private static final Logger LOG = Log.getLogger(EchoListener.class);
     private Session mSession;
 
     @Override
     public void onWebSocketBinary(byte[] payload, int offset, int len) {
-        /* ignore */
+        LOG.info("onWebSocketBinary");
     }
 
     @Override
     public void onWebSocketClose(int statusCode, String reason) {
+        LOG.info("onWebSocketClose {} {}", statusCode, reason);
         mSession = null;
     }
 
     @Override
     public void onWebSocketConnect(Session session) {
-        System.out.println("onWebSocketConnect: " + session);
+        LOG.info("onWebSocketConnect {}", session);
         mSession = session;
     }
 
     @Override
     public void onWebSocketError(Throwable cause) {
-        cause.printStackTrace(System.err);
+        LOG.warn("onWebSocketError {}", cause);
     }
 
     @Override
     public void onWebSocketText(String message) {
-        System.out.println("onWebSocketText: " + message);
+        LOG.info("onWebSocketText {}", message);
         if (mSession != null && mSession.isOpen()) {
-            System.out.printf("Echoing back message [%s]%n", message);
             mSession.getRemote().sendString("ECHO: " + message, null);
         }
     }
