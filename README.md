@@ -23,9 +23,14 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/JettyMavenHelloWarApp/screenshot.png)
 
 
+(Does not use Jetty yet)
 [TlsPskClient](https://github.com/afarber/jetty-newbie/tree/master/TlsPskClient) based on [Java Bouncy Castle TLS PSK example by Tiebing](http://tiebing.blogspot.de/2013/09/java-bouncy-castle-tls-psk-example.html):
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/TlsPskClient/screenshot.png)
+
+
+(Does not use Jetty yet)
+[TlsPskServer](https://github.com/afarber/jetty-newbie/tree/master/TlsPskServer) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/master/core/src/test/java/org/bouncycastle/crypto/tls/test)
 
 
 [WebsocketHandler](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt and includes [Linux config files](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler/linux) for systemd service and port forwarding 80 -> 8080:

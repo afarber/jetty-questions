@@ -13,6 +13,7 @@ import javax.xml.bind.DatatypeConverter;
 
 import org.bouncycastle.crypto.tls.AlertLevel;
 import org.bouncycastle.crypto.tls.Certificate;
+import org.bouncycastle.crypto.tls.CipherSuite;
 import org.bouncycastle.crypto.tls.ServerOnlyTlsAuthentication;
 import org.bouncycastle.crypto.tls.TlsAuthentication;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
@@ -61,6 +62,7 @@ public class Main {
         public byte[] getPSK() {
             return DatatypeConverter.parseHexBinary("1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A");
         }
+
     }
 
     public static void main(String[] args) throws Exception {
@@ -123,6 +125,15 @@ public class Main {
                         throws IOException {
                     System.out.println("in getAuthentication");
                 }
+            };
+        }
+        
+        @Override
+        public int[] getCipherSuites()
+        {
+            return new int[] { 
+                CipherSuite.TLS_PSK_WITH_NULL_SHA256,
+                CipherSuite.TLS_PSK_WITH_AES_128_CBC_SHA256
             };
         }
     }
