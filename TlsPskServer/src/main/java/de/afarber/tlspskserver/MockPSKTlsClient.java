@@ -1,25 +1,24 @@
 /*
-    The file has been copied from https://github.com/bcgit/bc-java
-
-    Copyright (c) 2000-2016 The Legion of the Bouncy Castle Inc. (http://www.bouncycastle.org)
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
-    and associated documentation files (the "Software"), to deal in the Software without restriction, 
-    including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-    and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-    subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all copies or substantial
-    portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-    PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-    OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-    DEALINGS IN THE SOFTWARE.
-*/
-
+ * The file has been copied from https://github.com/bcgit/bc-java
+ *
+ * Copyright (c) 2000-2016 The Legion of the Bouncy Castle Inc. (http://www.bouncycastle.org)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ * and associated documentation files (the "Software"), to deal in the Software without restriction, 
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 
 package de.afarber.tlspskserver;
 
@@ -113,13 +112,17 @@ class MockPSKTlsClient
         }
     }
 
+    @Override
     public int[] getCipherSuites()
     {
-        return new int[]{ CipherSuite.TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA384,
-            CipherSuite.TLS_DHE_PSK_WITH_AES_256_CBC_SHA384, CipherSuite.TLS_RSA_PSK_WITH_AES_256_CBC_SHA384,
-            CipherSuite.TLS_PSK_WITH_AES_256_CBC_SHA };
+        return new int[] { 
+            //CipherSuite.TLS_PSK_WITH_AES_256_CBC_SHA, // for tests with openssl tool
+            CipherSuite.TLS_PSK_WITH_NULL_SHA256,
+            CipherSuite.TLS_PSK_WITH_AES_128_CBC_SHA256
+        };
     }
 
+    @Override
     public ProtocolVersion getMinimumVersion()
     {
         return ProtocolVersion.TLSv12;
@@ -139,27 +142,5 @@ class MockPSKTlsClient
         super.notifyServerVersion(serverVersion);
 
         System.out.println("TLS-PSK client negotiated " + serverVersion);
-    }
-
-    @Override
-    public TlsAuthentication getAuthentication() throws IOException
-    {
-        return new ServerOnlyTlsAuthentication()
-        {
-            @Override
-            public void notifyServerCertificate(org.bouncycastle.crypto.tls.Certificate serverCertificate)
-                throws IOException
-            {
-                Certificate[] chain = serverCertificate.getCertificateList();
-                System.out.println("TLS-PSK client received server certificate chain of length " + chain.length);
-                for (int i = 0; i != chain.length; i++)
-                {
-                    Certificate entry = chain[i];
-                    // TODO Create fingerprint based on certificate signature algorithm digest
-                    System.out.println("    fingerprint:SHA-256 " + TlsTestUtils.fingerprint(entry) + " ("
-                        + entry.getSubject() + ")");
-                }
-            }
-        };
     }
 }

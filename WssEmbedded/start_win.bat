@@ -3,10 +3,10 @@
 chcp 65001
 
 set JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
-set REPO="C:\Users\user1\.m2\repository"
+set REPO="C:\Users\U299FAV\.m2\repository"
 set VERSION=9.3.10.v20160621
 
-set CPATHS=C:\Users\user1\jetty-newbie\WssEmbedded\target\classes
+set CPATHS=C:\Users\U299FAV\jetty-newbie\WssEmbedded\target\classes
 set CPATHS=%CPATHS%;%REPO%\javax\servlet\javax.servlet-api\3.1.0\javax.servlet-api-3.1.0.jar
 set CPATHS=%CPATHS%;%REPO%\org\eclipse\jetty\jetty-http\%VERSION%\jetty-http-%VERSION%.jar
 set CPATHS=%CPATHS%;%REPO%\org\eclipse\jetty\jetty-io\%VERSION%\jetty-io-%VERSION%.jar

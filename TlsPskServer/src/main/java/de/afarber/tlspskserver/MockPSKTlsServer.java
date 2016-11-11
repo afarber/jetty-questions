@@ -1,25 +1,24 @@
 /*
-    The file has been copied from https://github.com/bcgit/bc-java
-
-    Copyright (c) 2000-2016 The Legion of the Bouncy Castle Inc. (http://www.bouncycastle.org)
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
-    and associated documentation files (the "Software"), to deal in the Software without restriction, 
-    including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
-    and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-    subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in all copies or substantial
-    portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-    PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-    OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-    DEALINGS IN THE SOFTWARE.
-*/
-
+ * The file has been copied from https://github.com/bcgit/bc-java
+ *
+ * Copyright (c) 2000-2016 The Legion of the Bouncy Castle Inc. (http://www.bouncycastle.org)
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ * and associated documentation files (the "Software"), to deal in the Software without restriction, 
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial
+ * portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE.
+ */
 
 package de.afarber.tlspskserver;
 
@@ -83,11 +82,10 @@ class MockPSKTlsServer
     @Override
     protected int[] getCipherSuites()
     {
-        return new int[]{ 
-            CipherSuite.TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA384,
-            CipherSuite.TLS_DHE_PSK_WITH_AES_256_CBC_SHA384, 
-            CipherSuite.TLS_RSA_PSK_WITH_AES_256_CBC_SHA384,
-            CipherSuite.TLS_PSK_WITH_AES_256_CBC_SHA 
+        return new int[] { 
+            //CipherSuite.TLS_PSK_WITH_AES_256_CBC_SHA, // for tests with openssl tool
+            //CipherSuite.TLS_PSK_WITH_NULL_SHA256,
+            CipherSuite.TLS_PSK_WITH_AES_128_CBC_SHA256
         };
     }
 
@@ -111,12 +109,6 @@ class MockPSKTlsServer
         System.out.println("TLS-PSK server negotiated " + serverVersion);
 
         return serverVersion;
-    }
-
-    @Override
-    protected TlsEncryptionCredentials getRSAEncryptionCredentials() throws IOException
-    {
-        return TlsTestUtils.loadEncryptionCredentials(context, new String[]{ "x509-server.pem", "x509-ca.pem" }, "x509-server-key.pem");
     }
 
     static class MyIdentityManager
