@@ -28,10 +28,11 @@ import java.io.PrintStream;
 import org.bouncycastle.crypto.tls.AlertDescription;
 import org.bouncycastle.crypto.tls.AlertLevel;
 import org.bouncycastle.crypto.tls.CipherSuite;
+import org.bouncycastle.crypto.tls.EncryptionAlgorithm;
 import org.bouncycastle.crypto.tls.PSKTlsServer;
 import org.bouncycastle.crypto.tls.ProtocolVersion;
-import org.bouncycastle.crypto.tls.TlsEncryptionCredentials;
 import org.bouncycastle.crypto.tls.TlsPSKIdentityManager;
+import org.bouncycastle.crypto.tls.TlsUtils;
 import org.bouncycastle.util.Strings;
 
 class MockPSKTlsServer
@@ -84,9 +85,22 @@ class MockPSKTlsServer
     {
         return new int[] { 
             //CipherSuite.TLS_PSK_WITH_AES_256_CBC_SHA, // for tests with openssl tool
-            //CipherSuite.TLS_PSK_WITH_NULL_SHA256,
-            CipherSuite.TLS_PSK_WITH_AES_128_CBC_SHA256
+            //CipherSuite.TLS_PSK_WITH_AES_128_CBC_SHA256,
+            CipherSuite.TLS_PSK_WITH_NULL_SHA256
         };
+    }
+
+    // workaround until the Bouncy Castle version is updated
+    @Override
+    protected boolean allowEncryptThenMAC()
+    {
+        try {
+            return TlsUtils.getEncryptionAlgorithm(getSelectedCipherSuite()) != EncryptionAlgorithm.NULL;
+        } catch (IOException e) {
+            System.err.println("allowEncryptThenMAC: " + e);
+        }
+        
+        return false;
     }
 
     @Override
@@ -104,11 +118,9 @@ class MockPSKTlsServer
     @Override
     public ProtocolVersion getServerVersion() throws IOException
     {
-        ProtocolVersion serverVersion = super.getServerVersion();
-
-        System.out.println("TLS-PSK server negotiated " + serverVersion);
-
-        return serverVersion;
+        ProtocolVersion sv = super.getServerVersion();
+        System.out.println("TLS-PSK server negotiated " + sv);
+        return sv;
     }
 
     static class MyIdentityManager

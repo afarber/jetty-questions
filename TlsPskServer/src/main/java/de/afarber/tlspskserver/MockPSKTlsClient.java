@@ -117,8 +117,8 @@ class MockPSKTlsClient
     {
         return new int[] { 
             //CipherSuite.TLS_PSK_WITH_AES_256_CBC_SHA, // for tests with openssl tool
-            CipherSuite.TLS_PSK_WITH_NULL_SHA256,
-            CipherSuite.TLS_PSK_WITH_AES_128_CBC_SHA256
+            CipherSuite.TLS_PSK_WITH_AES_128_CBC_SHA256,
+            CipherSuite.TLS_PSK_WITH_NULL_SHA256
         };
     }
 
