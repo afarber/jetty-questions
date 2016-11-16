@@ -30,6 +30,10 @@ Screenshots
 
 
 (Does not use Jetty yet)
+[TlsPskClient2](https://github.com/afarber/jetty-newbie/tree/master/TlsPskClient2) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/master/core/src/test/java/org/bouncycastle/crypto/tls/test)
+
+
+(Does not use Jetty yet)
 [TlsPskServer](https://github.com/afarber/jetty-newbie/tree/master/TlsPskServer) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/master/core/src/test/java/org/bouncycastle/crypto/tls/test)
 
 

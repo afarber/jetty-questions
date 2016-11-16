@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-package de.afarber.tlspskserver;
+package de.afarber.tlspskclient2;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -112,7 +112,7 @@ class MockPSKTlsClient
     public int[] getCipherSuites()
     {
         return new int[] { 
-            //CipherSuite.TLS_PSK_WITH_AES_256_CBC_SHA, // for tests with openssl tool
+            CipherSuite.TLS_PSK_WITH_AES_256_CBC_SHA, // for tests with openssl tool
             CipherSuite.TLS_PSK_WITH_AES_128_CBC_SHA256,
             CipherSuite.TLS_PSK_WITH_NULL_SHA256
         };
