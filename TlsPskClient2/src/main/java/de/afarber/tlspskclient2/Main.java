@@ -29,8 +29,6 @@ import org.bouncycastle.util.io.Streams;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Security.addProvider(new BouncyCastleProvider());
-
         SecureRandom random      = new SecureRandom();
         TlsPSKIdentity identity  = new BasicTlsPSKIdentity("Client_identity", Hex.decode("1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A"));
         Socket socket            = new Socket(InetAddress.getLocalHost(), 12345);
@@ -43,6 +41,18 @@ public class Main {
         OutputStream clearOs = proto.getOutputStream();
         InputStream clearIs = proto.getInputStream();
         clearOs.write("GET / HTTP/1.1\r\n\r\n".getBytes("UTF-8"));
-        Streams.pipeAll(clearIs, System.out);   // why is java.io.EOFException thrown?
+        pipeAll(clearIs, System.out);
+    }
+    
+    public static void pipeAll(InputStream inStr, OutputStream outStr)
+        throws IOException
+    {
+        byte[] bs = new byte[4096];
+        int numRead;
+        while ((numRead = inStr.read(bs, 0, bs.length)) > 0)    // Why is EOFException is thrown?
+        {
+            outStr.write(bs, 0, numRead);
+        }
     }
 }
+
