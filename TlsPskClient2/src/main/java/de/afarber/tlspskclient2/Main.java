@@ -41,18 +41,7 @@ public class Main {
         OutputStream clearOs = proto.getOutputStream();
         InputStream clearIs = proto.getInputStream();
         clearOs.write("GET / HTTP/1.1\r\n\r\n".getBytes("UTF-8"));
-        pipeAll(clearIs, System.out);
-    }
-    
-    public static void pipeAll(InputStream inStr, OutputStream outStr)
-        throws IOException
-    {
-        byte[] bs = new byte[4096];
-        int numRead;
-        while ((numRead = inStr.read(bs, 0, bs.length)) > 0)    // Why is EOFException is thrown?
-        {
-            outStr.write(bs, 0, numRead);
-        }
+        Streams.pipeAll(clearIs, System.out);                       // Why is EOFException thrown?
     }
 }
 
