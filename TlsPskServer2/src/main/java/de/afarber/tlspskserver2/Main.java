@@ -5,10 +5,13 @@ package de.afarber.tlspskserver2;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.SecureRandom;
 import org.bouncycastle.crypto.tls.TlsServerProtocol;
+import org.bouncycastle.util.encoders.Hex;
 import org.bouncycastle.util.io.Streams;
 
 /*
@@ -18,7 +21,7 @@ import org.bouncycastle.util.io.Streams;
             -connect 127.0.0.1:12345 \
             -psk 1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A \
             -cipher PSK-AES256-CBC-SHA \
-            -debug -state -tls1_2
+            -debug -state -msg -ign_eof -tls1_2
 */
 
 public class Main {
@@ -33,7 +36,8 @@ public class Main {
         MockPSKTlsServer server   = new MockPSKTlsServer();
         
         proto.accept(server);
-        Streams.pipeAll(proto.getInputStream(), proto.getOutputStream());
+        pipeAll(proto.getInputStream(), proto.getOutputStream());
+        //pipeAll(proto.getInputStream(), System.out);
         proto.close();
         
         /*
@@ -43,6 +47,19 @@ public class Main {
         */
     }
     
+    public static void pipeAll(InputStream inStr, OutputStream outStr)
+        throws IOException
+    {
+        byte[] bs = new byte[4096];
+        int numRead;
+        while ((numRead = inStr.read(bs, 0, bs.length)) >= 0)
+        {
+            System.out.println("XXX " + Hex.toHexString(bs, 0, numRead));
+            System.out.println("XXX " + new String(bs, 0, numRead));
+            outStr.write(bs, 0, numRead);
+        }
+    }
+
     static class ServerThread
         extends Thread
     {
