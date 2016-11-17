@@ -4,6 +4,7 @@ package de.afarber.tlspskclient2;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -41,7 +42,11 @@ public class Main {
         OutputStream clearOs = proto.getOutputStream();
         InputStream clearIs = proto.getInputStream();
         clearOs.write("GET / HTTP/1.1\r\n\r\n".getBytes("UTF-8"));
-        Streams.pipeAll(clearIs, System.out);                       // Why is EOFException thrown?
+        try {
+            Streams.pipeAll(clearIs, System.out);                       // Why is EOFException thrown?
+        } catch (Exception e) {
+            
+        }
     }
 }
 

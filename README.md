@@ -39,6 +39,12 @@ Screenshots
 [TlsPskServer](https://github.com/afarber/jetty-newbie/tree/master/TlsPskServer) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/master/core/src/test/java/org/bouncycastle/crypto/tls/test)
 
 
+(Does not use Jetty yet)
+[TlsPskServer2](https://github.com/afarber/jetty-newbie/tree/master/TlsPskServer2) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/master/core/src/test/java/org/bouncycastle/crypto/tls/test)
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/TlsPskServer2/screenshot.png)
+
+
 [WebsocketHandler](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt and includes [Linux config files](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler/linux) for systemd service and port forwarding 80 -> 8080:
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketHandler/screenshot.png)
