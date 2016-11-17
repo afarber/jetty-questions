@@ -19,3 +19,5 @@ target/
 # hide database connection credentials
 database.properties
 
+/TlsPskClient2/dependency-reduced-pom.xml
+/TlsPskServer2/dependency-reduced-pom.xml

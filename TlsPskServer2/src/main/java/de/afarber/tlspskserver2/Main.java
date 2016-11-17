@@ -12,7 +12,9 @@ import org.bouncycastle.crypto.tls.TlsServerProtocol;
 import org.bouncycastle.util.io.Streams;
 
 /*
-    # openssl s_client \
+    # java -jar target\TlsPskServer2-1.0-SNAPSHOT.jar
+
+    # echo blah | openssl s_client \
             -connect 127.0.0.1:12345 \
             -psk 1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A \
             -cipher PSK-AES256-CBC-SHA \

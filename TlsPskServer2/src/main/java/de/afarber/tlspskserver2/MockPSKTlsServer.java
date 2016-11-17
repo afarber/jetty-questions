@@ -34,6 +34,7 @@ import org.bouncycastle.crypto.tls.ProtocolVersion;
 import org.bouncycastle.crypto.tls.TlsPSKIdentityManager;
 import org.bouncycastle.crypto.tls.TlsUtils;
 import org.bouncycastle.util.Strings;
+import org.bouncycastle.util.encoders.Hex;
 
 class MockPSKTlsServer
     extends PSKTlsServer
@@ -129,21 +130,13 @@ class MockPSKTlsServer
         @Override
         public byte[] getHint()
         {
-            return Strings.toUTF8ByteArray("hint");
+            return Strings.toUTF8ByteArray("Client_identity");
         }
 
         @Override
         public byte[] getPSK(byte[] identity)
         {
-            if (identity != null)
-            {
-                String name = Strings.fromUTF8ByteArray(identity);
-                if (name.equals("client"))
-                {
-                    return new byte[16];
-                }
-            }
-            return null;
+            return Hex.decode("1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A");
         }
     }
 }

@@ -25,6 +25,8 @@ import org.bouncycastle.util.io.Streams;
             -psk_hint Client_identity\
             -cipher PSK-AES256-CBC-SHA \
             -debug -state -nocert -accept 12345 -tls1_2 -www
+
+    # java -jar target\TlsPskClient2-1.0-SNAPSHOT.jar
 */
 
 public class Main {
@@ -41,7 +43,7 @@ public class Main {
 
         OutputStream clearOs = proto.getOutputStream();
         InputStream clearIs = proto.getInputStream();
-        clearOs.write("GET / HTTP/1.1\r\n\r\n".getBytes("UTF-8"));
+        clearOs.write("GET / HTTP/1.0\r\n\r\n".getBytes("UTF-8"));
         try {
             Streams.pipeAll(clearIs, System.out);                       // Why is EOFException thrown?
         } catch (Exception e) {
