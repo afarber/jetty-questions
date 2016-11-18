@@ -2,17 +2,11 @@
 
 package de.afarber.tlspskserver2;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.SecureRandom;
-import org.bouncycastle.crypto.tls.TlsServerProtocol;
-import org.bouncycastle.util.encoders.Hex;
-import org.bouncycastle.util.io.Streams;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /*
     # java -jar target\TlsPskServer2-1.0-SNAPSHOT.jar
@@ -27,63 +21,12 @@ import org.bouncycastle.util.io.Streams;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        SecureRandom random       = new SecureRandom();
         ServerSocket serverSocket = new ServerSocket(12345);
-        Socket socket             = serverSocket.accept();
-        BufferedInputStream bis   = new BufferedInputStream(socket.getInputStream());
-        BufferedOutputStream bos  = new BufferedOutputStream(socket.getOutputStream());
-        TlsServerProtocol proto   = new TlsServerProtocol(bis, bos, random);
-        MockPSKTlsServer server   = new MockPSKTlsServer();
-        
-        proto.accept(server);
-        pipeAll(proto.getInputStream(), proto.getOutputStream());
-        //pipeAll(proto.getInputStream(), System.out);
-        proto.close();
-        
-        /*
-        ServerThread serverThread = new ServerThread(proto);
-        serverThread.start();
-        serverThread.join();
-        */
-    }
-    
-    public static void pipeAll(InputStream inStr, OutputStream outStr)
-        throws IOException
-    {
-        byte[] bs = new byte[4096];
-        int numRead;
-        while ((numRead = inStr.read(bs, 0, bs.length)) >= 0)
-        {
-            System.out.println("XXX " + Hex.toHexString(bs, 0, numRead));
-            System.out.println("XXX " + new String(bs, 0, numRead));
-            outStr.write(bs, 0, numRead);
-        }
-    }
+        ExecutorService pool      = Executors.newFixedThreadPool(10);
 
-    static class ServerThread
-        extends Thread
-    {
-        private final TlsServerProtocol proto;
-
-        ServerThread(TlsServerProtocol proto)
-        {
-            this.proto = proto;
-        }
-
-        @Override
-        public void run()
-        {
-            try
-            {
-                MockPSKTlsServer server = new MockPSKTlsServer();
-                proto.accept(server);
-                Streams.pipeAll(proto.getInputStream(), proto.getOutputStream());
-                proto.close();
-            }
-            catch (IOException e)
-            {
-                System.err.println(e);
-            }
+        while (true) {
+            Socket socket = serverSocket.accept();
+            pool.execute(new MyRunnable(socket));
         }
     }
 }
