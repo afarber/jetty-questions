@@ -12,6 +12,9 @@ import org.bouncycastle.util.encoders.Hex;
 
 public class MyRunnable implements Runnable {
 
+    private static final ThreadLocal<SecureRandom> RANDOM = ThreadLocal.withInitial(SecureRandom::new);
+    private static final ThreadLocal<MockPSKTlsServer> SERVER = ThreadLocal.withInitial(MockPSKTlsServer::new);
+    
     private final Socket mSocket;
 
     public MyRunnable(Socket socket) {
@@ -20,13 +23,12 @@ public class MyRunnable implements Runnable {
 
     @Override
     public void run() {
-        try {
-            SecureRandom random       = new SecureRandom();
-            BufferedInputStream bis   = new BufferedInputStream(mSocket.getInputStream());
-            BufferedOutputStream bos  = new BufferedOutputStream(mSocket.getOutputStream());
-            TlsServerProtocol proto   = new TlsServerProtocol(bis, bos, random);
-            MockPSKTlsServer server   = new MockPSKTlsServer();
-            proto.accept(server);
+        try (
+            BufferedInputStream bis  = new BufferedInputStream(mSocket.getInputStream());
+            BufferedOutputStream bos = new BufferedOutputStream(mSocket.getOutputStream());
+        ) {
+            TlsServerProtocol proto  = new TlsServerProtocol(bis, bos, RANDOM.get());
+            proto.accept(SERVER.get());
             pipeAll(proto.getInputStream(), proto.getOutputStream());
             //pipeAll(proto.getInputStream(), System.out);
             proto.close();

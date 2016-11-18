@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 /*
     # java -jar target\TlsPskServer2-1.0-SNAPSHOT.jar
 
-    # echo blah | openssl s_client \
+    # (while true; do echo blah; sleep 5; done) | openssl s_client \
             -connect 127.0.0.1:12345 \
             -psk 1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A1A \
             -cipher PSK-AES256-CBC-SHA \
@@ -21,11 +21,11 @@ import java.util.concurrent.Executors;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(12345);
-        ExecutorService pool      = Executors.newFixedThreadPool(10);
+        ServerSocket server  = new ServerSocket(12345);
+        ExecutorService pool = Executors.newFixedThreadPool(10);
 
         while (true) {
-            Socket socket = serverSocket.accept();
+            Socket socket = server.accept();
             pool.execute(new MyRunnable(socket));
         }
     }
