@@ -29,6 +29,7 @@ public class MyRunnable implements Runnable {
         ) {
             TlsServerProtocol proto  = new TlsServerProtocol(bis, bos, RANDOM.get());
             proto.accept(SERVER.get());
+            // TODO - connect to Jetty az port JETTY_PORT
             pipeAll(proto.getInputStream(), proto.getOutputStream());
             //pipeAll(proto.getInputStream(), System.out);
             proto.close();
