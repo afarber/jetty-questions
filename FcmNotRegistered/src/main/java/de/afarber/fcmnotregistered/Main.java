@@ -1,11 +1,11 @@
 package de.afarber.fcmnotregistered;
 
-import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.jetty.client.HttpClient;
-import org.eclipse.jetty.client.api.Response;
+import org.eclipse.jetty.client.api.Result;
+import org.eclipse.jetty.client.util.BufferingResponseListener;
 import org.eclipse.jetty.client.util.StringContentProvider;
 import org.eclipse.jetty.http.HttpHeader;
 import org.eclipse.jetty.util.ajax.JSON;
@@ -17,14 +17,7 @@ public class Main {
     private static final String FCM_ERROR          = "error";
     private static final String FCM_NOT_REGISTERED = "NotRegistered";
     
-    private static final String EXAMPLE_RESPONSE =  "{ \"multicast_id\": 216,\n" +
-                                                    "  \"success\": 3,\n" +
-                                                    "  \"failure\": 3,\n" +
-                                                    "  \"canonical_ids\": 1,\n" +
-                                                    "  \"results\": [\n" +
-                                                    "    { \"error\": \"NotRegistered\"}\n" +
-                                                    "  ]\n" +
-                                                    "}";
+    private static final String EXAMPLE_RESPONSE_1 =  "";
 
     private static final Map<String, Object> REQUEST      = new HashMap<>();
     private static final Map<String, Object> NOTIFICATION = new HashMap<>();
@@ -42,25 +35,26 @@ public class Main {
     }
 
     private static final HttpClient sHttpClient = new HttpClient();
-    private static final Response.ContentListener sFcmListener = new Response.ContentListener() {
+    private static final BufferingResponseListener sFcmListener = new BufferingResponseListener() {
         @Override
-        public void onContent(Response response, ByteBuffer content) {
-            if (response.getStatus() != 200) {
+        public void onComplete(Result result) {
+            if (!result.isSucceeded()) {
                 return;
             }
             
-            String body = StandardCharsets.UTF_8.decode(content).toString();
+            String body = getContentAsString(StandardCharsets.UTF_8);
             System.out.printf("onContent: %s\n", body);
             Map<String, Object> resp = (Map<String, Object>) JSON.parse(body);
             
             try {
                 Object[] results = (Object[]) resp.get(FCM_RESULTS);
-                Map result = (Map) results[0];
-                String error = (String) result.get(FCM_ERROR);
+                Map map = (Map) results[0];
+                String error = (String) map.get(FCM_ERROR);
                 if (FCM_NOT_REGISTERED.equals(error)) {
                     // TODO delete FCM token from the database
                 }
-            } catch (Exception ignore) {
+            } catch (Exception ex) {
+                System.err.println(ex);
             }
         }
     };
@@ -71,7 +65,6 @@ public class Main {
             .header(HttpHeader.AUTHORIZATION, FCM_KEY)
             .header(HttpHeader.CONTENT_TYPE, "application/json")
             .content(new StringContentProvider(JSON.toString(REQUEST)))
-            .onResponseContent(sFcmListener)
-            .send();
+            .send(sFcmListener);
     }
 }
