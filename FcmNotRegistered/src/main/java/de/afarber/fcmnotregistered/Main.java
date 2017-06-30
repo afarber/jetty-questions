@@ -51,7 +51,9 @@ public class Main {
                 return;
             }
             
-            // TODO delete FCM token from the database if results.0.error = NotRegistered
+            if (FCM_NOT_REGISTERED.equals(results[0])) {
+                // TODO delete FCM token from the database
+            }
         }
     };
     
