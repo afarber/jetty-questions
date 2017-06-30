@@ -39,6 +39,7 @@ public class Main {
         @Override
         public void onComplete(Result result) {
             if (!result.isSucceeded()) {
+                System.err.println(result.getFailure());
                 return;
             }
             
