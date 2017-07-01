@@ -12,13 +12,16 @@ import org.eclipse.jetty.util.ajax.JSON;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 public class Main {
-    private static final String FCM_URL            = "https://fcm.googleapis.com/fcm/send";
-    private static final String FCM_KEY            = "key=REPLACE_BY_YOUR_KEY";
-    private static final String FCM_RESULTS        = "results";
-    private static final String FCM_ERROR          = "error";
-    private static final String FCM_NOT_REGISTERED = "NotRegistered";
+    private static final String FCM_URL                  = "https://fcm.googleapis.com/fcm/send";
+    private static final String FCM_KEY                  = "key=REPLACE_BY_YOUR_KEY";
+    private static final String FCM_RESULTS              = "results";
+    private static final String FCM_ERROR                = "error";
+    private static final String FCM_NOT_REGISTERED       = "NotRegistered";
+    private static final String FCM_MISSING_REGISTRATION = "MissingRegistration";
+    private static final String FCM_INVALID_REGISTRATION = "InvalidRegistration";
     
-    private static final String EXAMPLE_RESPONSE_1 =  "";
+    private static final String EXAMPLE_RESPONSE_1       = "{\"multicast_id\":6782339717028231855,\"success\":0,\"failure\":1,\n" +
+                                                           "\"canonical_ids\":0,\"results\":[{\"error\":\"InvalidRegistration\"}]}";
 
     private static final Map<String, Object> REQUEST      = new HashMap<>();
     private static final Map<String, Object> NOTIFICATION = new HashMap<>();
@@ -46,15 +49,18 @@ public class Main {
             }
             
             String body = getContentAsString(StandardCharsets.UTF_8);
-            System.out.printf("onContent: %s\n", body);
+            System.out.printf("onComplete: %s\n", body);
             Map<String, Object> resp = (Map<String, Object>) JSON.parse(body);
             
             try {
                 Object[] results = (Object[]) resp.get(FCM_RESULTS);
                 Map map = (Map) results[0];
                 String error = (String) map.get(FCM_ERROR);
-                if (FCM_NOT_REGISTERED.equals(error)) {
-                    // TODO delete FCM token from the database
+                System.out.printf("error: %s\n", error);
+                if (FCM_NOT_REGISTERED.equals(error) ||
+                    FCM_MISSING_REGISTRATION.equals(error) ||
+                    FCM_INVALID_REGISTRATION.equals(error)) {
+                    // TODO delete invalid FCM token from the database
                 }
             } catch (Exception ex) {
                 System.err.println(ex);
