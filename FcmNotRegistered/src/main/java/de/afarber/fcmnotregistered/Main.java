@@ -9,6 +9,7 @@ import org.eclipse.jetty.client.util.BufferingResponseListener;
 import org.eclipse.jetty.client.util.StringContentProvider;
 import org.eclipse.jetty.http.HttpHeader;
 import org.eclipse.jetty.util.ajax.JSON;
+import org.eclipse.jetty.util.ssl.SslContextFactory;
 
 public class Main {
     private static final String FCM_URL            = "https://fcm.googleapis.com/fcm/send";
@@ -34,7 +35,8 @@ public class Main {
         DATA.put("Room", "PortugalVSDenmark");
     }
 
-    private static final HttpClient sHttpClient = new HttpClient();
+    private static final SslContextFactory sFactory = new SslContextFactory();
+    private static final HttpClient sHttpClient = new HttpClient(sFactory);
     private static final BufferingResponseListener sFcmListener = new BufferingResponseListener() {
         @Override
         public void onComplete(Result result) {
