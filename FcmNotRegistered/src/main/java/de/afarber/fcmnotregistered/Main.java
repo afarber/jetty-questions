@@ -20,6 +20,9 @@ public class Main {
     private static final String FCM_MISSING_REGISTRATION = "MissingRegistration";
     private static final String FCM_INVALID_REGISTRATION = "InvalidRegistration";
     
+    private static final String FCM_X_TOKEN              = "X-token";
+    private static final String TOKEN                    = "APA91bHun4MxP5egoKMwt2KZFBaFUH-1RYqx...";
+    
     private static final String EXAMPLE_RESPONSE_1       = "{\"multicast_id\":6782339717028231855,\"success\":0,\"failure\":1,\n" +
                                                            "\"canonical_ids\":0,\"results\":[{\"error\":\"InvalidRegistration\"}]}";
 
@@ -28,7 +31,7 @@ public class Main {
     private static final Map<String, Object> DATA         = new HashMap<>();
     
     static {
-        REQUEST.put("to", "APA91bHun4MxP5egoKMwt2KZFBaFUH-1RYqx...");
+        REQUEST.put("to", TOKEN);
         REQUEST.put("notification", NOTIFICATION);
         REQUEST.put("data", DATA);
         NOTIFICATION.put("body", "great match!");
@@ -60,7 +63,8 @@ public class Main {
                 if (FCM_NOT_REGISTERED.equals(error) ||
                     FCM_MISSING_REGISTRATION.equals(error) ||
                     FCM_INVALID_REGISTRATION.equals(error)) {
-                    // TODO delete invalid FCM token from the database
+                    String token = result.getRequest().getHeaders().get(FCM_X_TOKEN);
+                    System.out.printf("TODO delete invalid FCM token from the database: %s\n", token);
                 }
             } catch (Exception ex) {
                 System.err.println(ex);
@@ -73,6 +77,7 @@ public class Main {
         sHttpClient.POST(FCM_URL)
             .header(HttpHeader.AUTHORIZATION, FCM_KEY)
             .header(HttpHeader.CONTENT_TYPE, "application/json")
+            .header(FCM_X_TOKEN, TOKEN)
             .content(new StringContentProvider(JSON.toString(REQUEST)))
             .send(sFcmListener);
     }
