@@ -14,13 +14,12 @@ import org.eclipse.jetty.util.ssl.SslContextFactory;
 public class Main {
     private static final String FCM_URL                  = "https://fcm.googleapis.com/fcm/send";
     private static final String FCM_KEY                  = "key=REPLACE_BY_YOUR_KEY";
+    private static final String FCM_TOKEN                = "token";
     private static final String FCM_RESULTS              = "results";
     private static final String FCM_ERROR                = "error";
     private static final String FCM_NOT_REGISTERED       = "NotRegistered";
     private static final String FCM_MISSING_REGISTRATION = "MissingRegistration";
     private static final String FCM_INVALID_REGISTRATION = "InvalidRegistration";
-    
-    private static final String FCM_X_TOKEN              = "X-token";
     private static final String TOKEN                    = "APA91bHun4MxP5egoKMwt2KZFBaFUH-1RYqx...";
     
     private static final String EXAMPLE_RESPONSE_1       = "{\"multicast_id\":6782339717028231855,\"success\":0,\"failure\":1,\n" +
@@ -53,9 +52,9 @@ public class Main {
             
             String body = getContentAsString(StandardCharsets.UTF_8);
             System.out.printf("onComplete: %s\n", body);
-            Map<String, Object> resp = (Map<String, Object>) JSON.parse(body);
             
             try {
+                Map<String, Object> resp = (Map<String, Object>) JSON.parse(body);
                 Object[] results = (Object[]) resp.get(FCM_RESULTS);
                 Map map = (Map) results[0];
                 String error = (String) map.get(FCM_ERROR);
@@ -63,7 +62,7 @@ public class Main {
                 if (FCM_NOT_REGISTERED.equals(error) ||
                     FCM_MISSING_REGISTRATION.equals(error) ||
                     FCM_INVALID_REGISTRATION.equals(error)) {
-                    String token = result.getRequest().getHeaders().get(FCM_X_TOKEN);
+                    String token = String.valueOf(result.getRequest().getAttributes().get(FCM_TOKEN));
                     System.out.printf("TODO delete invalid FCM token from the database: %s\n", token);
                 }
             } catch (Exception ex) {
@@ -77,7 +76,7 @@ public class Main {
         sHttpClient.POST(FCM_URL)
             .header(HttpHeader.AUTHORIZATION, FCM_KEY)
             .header(HttpHeader.CONTENT_TYPE, "application/json")
-            .header(FCM_X_TOKEN, TOKEN)
+            .attribute(FCM_TOKEN, TOKEN)
             .content(new StringContentProvider(JSON.toString(REQUEST)))
             .send(sFcmListener);
     }
