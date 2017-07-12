@@ -8,6 +8,11 @@ The files are public domain - unless there is a different note (by their respect
 Screenshots
 ==========
 
+[FcmAppContext](https://github.com/afarber/jetty-newbie/tree/master/FcmAppContext):
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/FcmAppContext/screenshot.png)
+
+
 [FcmNotRegistered](https://github.com/afarber/jetty-newbie/tree/master/FcmNotRegistered):
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/FcmNotRegistered/screenshot.png)
