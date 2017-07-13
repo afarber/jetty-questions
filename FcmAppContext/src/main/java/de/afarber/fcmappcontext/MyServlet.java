@@ -1,6 +1,5 @@
 package de.afarber.fcmappcontext;
 
-import com.sun.xml.internal.ws.api.policy.PolicyResolver;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -73,7 +72,7 @@ public class MyServlet extends WebSocketServlet implements Utils {
         }
         
         ServletContext ctx = getServletContext();
-        ctx.setAttribute("http_client", mHttpClient);
+        ctx.setAttribute(KEY_HTTP_CLIENT, mHttpClient);
     }
 
     @Override

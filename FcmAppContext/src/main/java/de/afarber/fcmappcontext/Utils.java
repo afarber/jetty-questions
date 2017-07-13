@@ -18,6 +18,7 @@ public interface Utils {
 
     public static final String KEY_UID                  = "uid";
     public static final String KEY_FCM                  = "fcm";
+    public static final String KEY_HTTP_CLIENT          = "http_client";
     
     // delete invalid FCM token from the database
     public static final String SQL_DELETE_FCM           =
