@@ -1,6 +1,5 @@
 package de.afarber.fcmappcontext;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
@@ -26,16 +25,14 @@ public class MyServlet extends WebSocketServlet implements Utils {
         } catch (Exception ex) {
             throw new ServletException(ex);
         }
-        
-        ServletContext ctx = getServletContext();
-        ctx.setAttribute(KEY_HTTP_CLIENT, mHttpClient);
     }
 
     @Override
     public void destroy() {
         try {
             mHttpClient.stop();
-        } catch (Exception ignore) {
+        } catch (Exception ex) {
+            LOG.warn("destroy", ex);
         }
 
         super.destroy();
