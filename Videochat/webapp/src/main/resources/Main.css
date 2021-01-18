@@ -1,0 +1,273 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin:      0;
+    padding:     0;
+    -webkit-user-select: none;
+    -moz-user-select:    none;
+    -ms-user-select:     none;
+    user-select:         none;
+}
+
+#fullDiv {
+    width:          100%;
+    height:         100vh;
+    background:     #FFF;
+    display:        flex;
+    flex-direction: column;    
+}
+
+#headerDiv {
+    background:      #FCF;
+    display:         flex;
+    justify-content: space-between;
+}
+
+#lobbyDiv {
+    flex-grow:       1;
+    background:      #CFF;
+    display:         flex;
+    justify-content: space-between;
+    min-width:       150px;
+    min-height:      150px;
+}
+
+#rightDiv {
+    background:     #FFC;
+    display:        flex;
+    flex-direction: column;    
+}
+
+#footerDiv {
+    background:     #91bce5;
+    text-align:     right;
+    padding:        4px;
+}
+
+#chatDiv {
+    valign:         top;
+}
+
+#tablesDiv {
+    overflow-y:     scroll;
+    flex-grow:      1;
+    min-width:      100px;
+    min-height:     100px;
+}
+
+#playersDiv {
+    /* must be wide enough for 160px player */
+    width:          200px;
+    overflow-y:     scroll;
+}
+
+#tablesDiv .ui-selecting {
+    background-color:   #81BB6C;
+}
+
+fieldset {
+    border:         0px;
+}
+
+#gameDiv {
+    position:       relative;
+    flex-grow:      1;
+    min-width:      150px;
+    min-height:     150px;
+    /* TODO fix for Safari / MacOS */
+}
+
+#pixiCanvas {
+    background:     radial-gradient(#FFF, #9C9);
+    width:          100%;
+    height:         100%;
+    min-width:      100px;
+    min-height:     100px;
+}
+
+#kukuSlider {
+    width:          300px;
+    margin:         15px;
+}
+
+#red, #green, #blue {
+    width:          300px;
+    margin:         15px;
+}
+
+#swatch {
+    padding:        10px;
+    margin:         5px;
+    color:          #FFF;
+}
+
+#red   .ui-slider-range  { background:   #ef2929; }
+#red   .ui-slider-handle { border-color: #ef2929; }
+#green .ui-slider-range  { background:   #8ae234; }
+#green .ui-slider-handle { border-color: #8ae234; }
+#blue  .ui-slider-range  { background:   #729fcf; }
+#blue  .ui-slider-handle { border-color: #729fcf; }
+
+.raspasy-player {
+    font-weight:        normal;
+    position:           relative;
+    background:         #FFF no-repeat center;
+    background-size:    contain;
+    box-shadow:         0 0 32px rgba(0, 0, 0, 0.2);
+    width:              160px;
+    height:             120px;
+}
+
+.raspasy-player:hover {
+    font-weight:        bold;
+}
+
+.raspasy-player-name {
+    position:           absolute;
+    font-size:          18px;
+    background:         #FFF;
+    color:              #000;
+    text-align:         left;
+    left:               0;
+    bottom:             0;
+    padding:            2px;
+    width:              156px;
+    height:             20px;
+}
+
+.raspasy-player-bid {
+    position:           absolute;
+    font-size:          18px;
+    background:         #FFF;
+    color:              #000;
+    text-align:         right;
+    right:              0;
+    top:                0;
+    padding:            2px;
+    width:              36px;
+    height:             20px;
+}
+
+.raspasy-player-trix {
+    position:           absolute;
+    font-size:          18px;
+    background:         #FFF;
+    color:              #000;
+    text-align:         right;
+    right:              0;
+    bottom:             0;
+    padding:            2px;
+    width:              36px;
+    height:             20px;
+}
+
+.raspasy-player-rep {
+    position:           absolute;
+    right:              0;
+    bottom:             0;
+}
+
+.raspasy-player-bad-big {
+    position:           relative;
+    background:         #C00;
+    width:              50px;
+    height:             1px;
+    display:            none;
+}
+
+.raspasy-player-bad-small {
+    position:           relative;
+    background:         #C00;
+    width:              25px;
+    height:             1px;
+    display:            none;
+}
+
+.raspasy-player-good-big {
+    position:           relative;
+    background:         #6C6;
+    width:              50px;
+    height:             1px;
+    display:            none;
+}
+
+.raspasy-player-good-small {
+    position:           relative;
+    background:         #6C6;
+    width:              25px;
+    height:             1px;
+    display:            none;
+}
+
+.raspasy-table {
+    position:           relative;
+    background:         #A3DD8E;
+    color:              white;
+    margin:             50px; 
+    float:              left; 
+    border:             4px solid #91BCE5;
+    border-radius:      16px;
+    box-shadow:         0 0 32px rgba(0, 0, 0, 0.2);
+    width:              160px; 
+    height:             160px; 
+}
+
+.raspasy-table:hover {
+    background-color:   #92CC7D;
+}
+
+.raspasy-table-tid {
+    position:           absolute;
+    font-size:          1.5em; 
+    top:                65px;
+    width:              100%;
+    color:              white;
+    text-align:         center; 
+}
+
+.raspasy-table-player0 {
+    position:           absolute;
+    left:               -40px;
+    top:                50px;
+    background:         #FFF no-repeat center;
+    background-size:    contain;
+    box-shadow:         0 0 8px rgba(0, 0, 0, 0.2);
+    width:              80px;
+    height:             60px;
+    display:            none;
+}
+
+.raspasy-table-player1 {
+    position:           absolute;
+    left:               40px;
+    top:                -30px;
+    background:         #FFF no-repeat center;
+    background-size:    contain;
+    box-shadow:         0 0 8px rgba(0, 0, 0, 0.2);
+    width:              80px;
+    height:             60px;
+    display:            none;
+}
+
+.raspasy-table-player2 {
+    position:           absolute;
+    left:               120px;
+    top:                50px;
+    background:         #FFF no-repeat center;
+    background-size:    contain;
+    box-shadow:         0 0 8px rgba(0, 0, 0, 0.2);
+    width:              80px;
+    height:             60px;
+    display:            none;
+}
+
+.raspasy-table-player3 {
+    position:           absolute;
+    left:               40px;
+    top:                130px;
+    background:         #FFF no-repeat center;
+    background-size:    contain;
+    box-shadow:         0 0 8px rgba(0, 0, 0, 0.2);
+    width:              80px;
+    height:             60px;
+    display:            none;
+}

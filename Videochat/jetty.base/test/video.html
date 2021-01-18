@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My video conference</title>
+  <meta charset="UTF-8"/>
+<style type="text/css">
+    video {
+        width: 384px;
+        height: 288px;
+        border: 1px solid black;
+        text-align: center;
+    }
+    .container {
+        width: 780px;
+        margin: 0 auto;
+    }
+</style>
+    <script type="text/javascript" src="myrtclib-video.js"></script>
+    <script type="text/javascript" src="adapter.js"></script>
+</head>
+<body onLoad="onPageLoad();">
+<div class="container">
+  <video autoplay="autoplay" id="localVideo" muted="true"></video>
+    <canvas id="fcanva" width="384px" height="288px"></canvas>
+</div>
+<div>
+  <button onclick="doGrayScale()">do grayscale</button><br>
+  Brightness <input type="range" oninput="changeBrightness(this.valueAsNumber);" value="0" step="0.1" min="0" max="10"><br>
+  Contrast <input type="range" oninput="changeContrast(this.valueAsNumber);" value="0" step="0.1" min="0" max="10"><br>
+  Saturation <input type="range" oninput="changeSaturation(this.valueAsNumber);" value="0" step="0.1" min="0" max="10"><br>
+  Hue <input type="range" oninput="changeHue(this.valueAsNumber);" value="0" step="20" min="0" max="360"><br>
+  Sepia <input type="range" oninput="changeSepia(this.valueAsNumber);" value="0" step="0.1" min="0" max="1"><br>
+  Opacity <input type="range" oninput="changeOpacity(this.valueAsNumber);" value="1" step="0.1" min="0" max="1"><br>
+  Inversion <input type="range" oninput="invertColors(this.valueAsNumber);" value="0" step="0.1" min="0" max="1"><br>
+  Blur <input type="range" oninput="doBlur(this.valueAsNumber);" value="0" step="1" min="0" max="15"><br>
+  Shadow <input type="range" oninput="doShadow(this.valueAsNumber);" value="0" step="5" min="0" max="50"><br>
+  <button onclick="pixelize(10)">Pixelize</button><br>
+    <canvas id="canva" width="384px" height="288px" style="visibility:hidden;"></canvas>
+</div>
+<script>
+  var lv = null;
+  
+  function doGrayScale() {  
+  lv.style.webkitFilter="grayscale(50%)";  
+  };
+
+  function changeBrightness(val) {
+  lv.style.webkitFilter="brightness(" + val + ")";
+  };
+
+  function changeContrast(val) {
+  lv.style.webkitFilter="contrast(" + val + ")";
+  };
+
+  function changeSaturation(val) {
+  lv.style.webkitFilter="saturate(" + val + ")";
+  };
+
+  function changeHue(val) {
+  lv.style.webkitFilter="hue-rotate(" + val + "deg)";
+  };
+
+  function changeSepia(val) {
+  lv.style.webkitFilter="sepia(" + val + ")";
+  };
+
+  function changeOpacity(val) {
+  lv.style.webkitFilter="opacity(" + val + ")";
+  };
+
+  function invertColors(val) {
+  lv.style.webkitFilter="invert(" + val + ")";
+  };
+
+  function doBlur(val) {
+  lv.style.webkitFilter="blur(" + val + "px)";
+  };
+
+  function doShadow(val) {
+  lv.style.webkitFilter="drop-shadow(" + val + "px " + val + "px 10px green)";
+  };
+
+  var cnv = document.getElementById("canva").getContext('2d');
+  var fcnv = document.getElementById("fcanva").getContext('2d');
+
+function onPageLoad() {
+  lv = document.getElementById("localVideo");
+  
+  myrtclibinit('ws://127.0.0.1:8080/ws/', document.getElementById("localVideo"), document.getElementById("remoteVideo"));
+};
+
+  var pixelsize = 10;
+  var w = 384;
+  var h = 288;
+  
+function pixelize(pixelsize) {
+    cnv.drawImage(lv, 0, 0, w, h);
+    for(var x = 1; x < w; x += pixelsize)
+    {
+        for(var y = 1; y < h; y += pixelsize)
+        {
+            var pxl = cnv.getImageData(x, y, 1, 1);
+            fcnv.fillStyle = "rgb("+pxl.data[0]+","+pxl.data[1]+","+pxl.data[2]+")";
+            fcnv.fillRect(x, y, x + pixelsize - 1, y + pixelsize - 1);
+        }
+    }
+ 
+    setTimeout(function () {
+        pixelize(pixelsize);
+    }, 0);
+}
+		   
+</Script>
+
+</body>
+</html>

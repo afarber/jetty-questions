@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My WebRTC private chat</title>
+<style type="text/css">
+
+</style>
+    <script type="text/javascript" src="myrtclib-data.js"></script>
+    <script type="text/javascript" src="adapter.js"></script>
+</head>
+<body>
+<div id="status"></div><br>
+<div id="chat"></div>
+<form name="chat_form" onsubmit="onChatSubmit(document.chat_form.msg.value); return false;">
+    <input type="text" class="search-query" placeholder="chat here" name="msg" id="chat_input">
+    <input type="submit" class="btn" id="chat_submit_btn"/>
+</form>
+<script>
+myrtclibinit('ws://127.0.0.1:8080/ws/');
+
+function onChatSubmit(txt) {
+    var msg = JSON.stringify({"type" : "chatmessage", "txt" : txt});
+    sendDataMessage(msg);
+};
+
+function onRoomReceived(room) {
+    var st = document.getElementById("status");
+    st.innerHTML = "Now, if somebody wants to join you, should use this link: <a href=\""+window.location.href+"?room="+room+"\">"+window.location.href+"?room="+room+"</a>";
+};
+
+function onPrivateMessageReceived(txt) {
+    var t = document.getElementById('chat').innerHTML;
+    t += "<br>" + txt;
+    document.getElementById('chat').innerHTML = t;
+}
+
+</script>
+
+</body>
+</html>
+

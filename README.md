@@ -55,6 +55,11 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/TlsPskServer2/screenshot.png)
 
 
+[Videochat](https://github.com/afarber/jetty-newbie/tree/master/Videochat) based on [WebRTC Cookbook](https://www.packtpub.com/product/webrtc-cookbook/9781783284450):
+
+![screenshot](https://raw.github.com/afarber/jetty-newbie/master/Videochat/screenshot.png)
+
+
 [WebsocketHandler](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler) based on [jetty-project/embedded-websocket-echo-examples](https://github.com/jetty-project/embedded-websocket-echo-examples) by Joakim Erdfelt and includes [Linux config files](https://github.com/afarber/jetty-newbie/tree/master/WebsocketHandler/linux) for systemd service and port forwarding 80 -> 8080:
 
 ![screenshot](https://raw.github.com/afarber/jetty-newbie/master/WebsocketHandler/screenshot.png)
