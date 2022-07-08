@@ -14,7 +14,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <jetty.version>9.4.48.v20220622</jetty.version>
-        <pgsql.version>9.4.1208.jre7</pgsql.version>
+        <pgsql.version>42.2.25.jre7</pgsql.version>
     </properties>
   
     <dependencies>
