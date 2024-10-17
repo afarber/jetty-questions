@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <script>
+      const WS_URL = "ws://127.0.0.1:8080/en/";
+      const LOGIN =
+        "0283da60063abfb3a87f1aed845d17fe2d9ba8c780b478dc4ae048f5ee97a6d50283da60063abfb3a87f1aed845d17fe2d9ba8c780b478dc4ae048f5ee97a6d50283da60063abfb3a87f1aed845d17fe2d9ba8c780b478dc4ae048f5ee97a6d50283da60063abfb3a87f1aed845d17fe2d9ba8c780b478dc4ae048f5ee97a6d5";
+
+      let ws = new WebSocket(WS_URL);
+
+      ws.onopen = function (ev) {
+        console.log("onopen", ev);
+        if (isConnected()) ws.send(LOGIN);
+      };
+
+      ws.onmessage = function (msg) {
+        console.log("onmessage", msg);
+      };
+
+      ws.onerror = function (ev) {
+        console.log("onerror", ev);
+        ws = null;
+      };
+
+      ws.onclose = function (ev) {
+        console.log("onclose", ev);
+        ws = null;
+      };
+
+      function isConnected() {
+        return ws && ws.readyState === WebSocket.OPEN;
+      }
+    </script>
+    Please look into the browser console to see "Unknown opcode: 7" on macOS 15
+  </body>
+</html>

@@ -80,6 +80,11 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-questions/master/WssEmbedded/screenshot.png)
 
 
+[jetty-mac-opcode-7](https://github.com/afarber/jetty-questions/tree/master/jetty-mac-opcode-7) demonstrates the "Unknown opcode: 7" problem on macOS with Jetty 100:
+
+![screenshot](https://raw.github.com/afarber/jetty-questions/master/jetty-mac-opcode-7/screenshot.png)
+
+
 ![StackOverflow](http://stackoverflow.com/users/flair/165071.png)
 
 [My Jetty-related questions at StackOverflow](http://stackoverflow.com/search?q=user:165071+[jetty])
