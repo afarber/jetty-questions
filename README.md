@@ -80,6 +80,11 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-questions/master/WssEmbedded/screenshot.png)
 
 
+[jakartaee-hello-world](https://github.com/afarber/jetty-questions/tree/master/jakartaee-hello-world) add a [Jakarta EE10](https://start.jakarta.ee) project:
+
+![screenshot](https://raw.github.com/afarber/jetty-questions/master/jakartaee-hello-world/screenshot.png)
+
+
 [jetty-mac-opcode-7](https://github.com/afarber/jetty-questions/tree/master/jetty-mac-opcode-7) demonstrates the "Unknown opcode: 7" problem on macOS with Jetty 100:
 
 ![screenshot](https://raw.github.com/afarber/jetty-questions/master/jetty-mac-opcode-7/screenshot.png)
