@@ -1,7 +1,7 @@
 CHCP 65001
 
 @REM Run once on Windows (without proxy-protocol,gzip):
-@REM java -jar jetty-home-12.0.14\start.jar jetty.home=..\jetty-home-12.0.14 jetty.base=jetty.base --add-module=http,webapp,deploy,resources,websocket
+@REM java -jar ..\jetty-home-12.0.14\start.jar jetty.home=..\jetty-home-12.0.14 jetty.base=jetty.base --add-modules=server,http,ee10-deploy
 
 SET JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 SET JETTY_HOME=%~dp0\..\jetty-home-12.0.14
