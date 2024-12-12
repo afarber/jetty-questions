@@ -23,6 +23,11 @@ Screenshots
 ![screenshot](https://raw.github.com/afarber/jetty-questions/master/Echo/screenshot.png)
 
 
+[JacksonParsingDemo](https://github.com/afarber/jetty-questions/tree/master/JacksonParsingDemo) a Java console app to try the [Jackson ObjectMapper](https://jenkov.com/tutorials/java-json/jackson-objectmapper.html)
+
+![screenshot](https://raw.github.com/afarber/jetty-questions/master/JacksonParsingDemo/screenshot.png)
+
+
 [JettyMavenHelloWorld](https://github.com/afarber/jetty-questions/tree/master/JettyMavenHelloWorld):
 
 ![screenshot](https://raw.github.com/afarber/jetty-questions/master/JettyMavenHelloWorld/screenshot.png)
