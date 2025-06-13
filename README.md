@@ -51,11 +51,11 @@ Screenshots
 
 
 (Does not use Jetty yet)
-[TlsPskServer](https://github.com/afarber/jetty-questions/tree/master/TlsPskServer) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/master/core/src/test/java/org/bouncycastle/crypto/tls/test)
+[TlsPskServer](https://github.com/afarber/jetty-questions/tree/master/TlsPskServer) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/main/core/src/test/java/org/bouncycastle/crypto)
 
 
 (Does not use Jetty yet)
-[TlsPskServer2](https://github.com/afarber/jetty-questions/tree/master/TlsPskServer2) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/master/core/src/test/java/org/bouncycastle/crypto/tls/test)
+[TlsPskServer2](https://github.com/afarber/jetty-questions/tree/master/TlsPskServer2) based on [a Bouncy Castle testcase](https://github.com/bcgit/bc-java/tree/main/core/src/test/java/org/bouncycastle/crypto)
 
 ![screenshot](https://raw.github.com/afarber/jetty-questions/master/TlsPskServer2/screenshot.png)
 
